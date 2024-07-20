@@ -175,7 +175,7 @@ let updateHighestQuantityProducts = () => {
 
     highestQuantityProducts.forEach(product => {
         let shop = createElement("div", "shop", `<i class="fa-solid fa-cart-plus"></i>`);
-        let productDiv = createElement("div", "dashboarddiv", `<p>${product.name || 'No Product'}</p><p class="quantity_text">${product.quantity || 'No Quantity'}</p>`);
+        let productDiv = createElement("div", "dashboarddiv", `<p>${product.name}</p><p class="quantity_text">${product.quantity }</p>`);
         productDiv.appendChild(shop);
         highestQuantitySection.appendChild(productDiv);
     });
@@ -186,9 +186,9 @@ let updateRecipientTable = () => {
     tbody.innerHTML = "";
     recipients[0].forEach(recipient => {
         let row = createElement("tr", "", `
-            <td>${recipient.product || 'No Product'}</td>
-            <td>${recipient.name || 'No Name'}</td>
-            <td>${recipient.quantity || 'No Quantity'}</td>
+            <td>${recipient.product}</td>
+            <td>${recipient.name}</td>
+            <td>${recipient.quantity}</td>
         `);
         tbody.appendChild(row);
     });
