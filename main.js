@@ -217,10 +217,15 @@ let handleFormSubmit = () => {
             let name = event.target.name.value;
             let quantity = parseInt(event.target.quantity.value, 10);
             if (name && quantity) {
-                products[0].push({ id: products[0].length + 1, name, quantity });
+                let existingProduct = products[0].find(product => product.name === name);
+                if (existingProduct) {
+                    existingProduct.quantity += quantity;
+                } else {
+                    products[0].push({ id: products[0].length + 1, name, quantity });
+                }
                 await saveData(PRODUCTS_BIN_ID, products);
                 updateHighestQuantityProducts();
-                alert("Added successfully");
+                alert(existingProduct ? "Product quantity updated successfully" : "Product added successfully");
             } else {
                 alert("Please provide valid product details.");
             }
@@ -245,7 +250,6 @@ let handleFormSubmit = () => {
             location.reload();
         });
     }
-    
 };
 
 document.addEventListener("DOMContentLoaded", () => {
